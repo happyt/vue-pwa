@@ -21,7 +21,10 @@ export default {
       renderer: null,
       mesh: null,
       incrX: 0.01,
-      incrY: 0.01
+      incrY: 0.01,
+      alpha: 0,
+      beta: 0,
+      gamma: 0
     }
   },
   methods: {
@@ -93,6 +96,12 @@ export default {
       console.log(text)
  //     console.log(text, String.fromCharCode(e.keyCode))
     })
+    window.addEventListener('deviceorientation',function(e){
+        this.alpha = e.alpha; //compass direction
+        this.beta = e.beta; //tilt front back
+        this.amma = e.gamma; //tilt left right
+    },false)
+    console.log(this.alpha, this.beta, this.gamma)
     this.init()
     this.animate()
   }

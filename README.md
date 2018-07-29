@@ -28,4 +28,5 @@ yarn add three
 
 vue add vuetify
 
-
+gyro?
+https://thepixel.ninja/labs/jquery-gyroscope-mobile-viewer-using-three-js/
