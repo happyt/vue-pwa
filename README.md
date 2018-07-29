@@ -4,16 +4,13 @@ https://www.telerik.com/blogs/a-gentle-and-practical-introduction-to-progressive
 
 yarn global add @vue/cli    // latest cli
 
-
-cd ..
-vue create
-
- (saved template as pwa-rout-vuex)
-cd xxx
-yarn run serve
-
-yarn run build
-yarn run serve -s dist
+- cd ..
+- vue create
+- (saved template as pwa-rout-vuex)
+- cd xxx
+- yarn run serve
+- yarn run build
+- yarn run serve -s dist
 
 scutil --get ComputerName   // to get host name
 
