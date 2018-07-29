@@ -1,21 +1,25 @@
-# vue-pwa
+## Just a simple PWA test ##
+https://www.telerik.com/blogs/building-pwas-with-vuejs
+https://www.telerik.com/blogs/a-gentle-and-practical-introduction-to-progressive-web-apps
 
-## Project setup
-```
-yarn install
-```
+yarn global add @vue/cli    // latest cli
 
-### Compiles and hot-reloads for development
-```
+
+cd ..
+vue create
+
+ (saved template as pwa-rout-vuex)
+cd xxx
 yarn run serve
-```
 
-### Compiles and minifies for production
-```
 yarn run build
-```
+yarn run serve -s dist
 
-### Lints and fixes files
-```
-yarn run lint
-```
+scutil --get ComputerName
+
+for remote client on iMac server need vue.config.js
+module.exports = {
+  devServer: {
+    disableHostCheck: true
+  }
+}
