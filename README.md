@@ -26,3 +26,6 @@ module.exports = {
 
 yarn add three
 
+vue add vuetify
+
+

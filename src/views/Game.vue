@@ -1,6 +1,7 @@
 <template>
   <div class="game">
     <div id='three'>
+        Try
         <v-btn color="warning" class='black--text' v-on:click.native=clicker>
         Action</v-btn>
         <v-btn color="warning" class='black--text' v-on:click.native=clickStop>
