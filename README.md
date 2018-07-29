@@ -15,11 +15,13 @@ yarn run serve
 yarn run build
 yarn run serve -s dist
 
-scutil --get ComputerName
+scutil --get ComputerName   // to get host name
 
 for remote client on iMac server need vue.config.js
+```
 module.exports = {
   devServer: {
     disableHostCheck: true
   }
 }
+```
