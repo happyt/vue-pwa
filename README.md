@@ -1,8 +1,7 @@
 ## Just a simple PWA test ##
 https://www.telerik.com/blogs/building-pwas-with-vuejs
-https://www.telerik.
 
-com/blogs/a-gentle-and-practical-introduction-to-progressive-web-apps
+https://www.telerik.com/blogs/a-gentle-and-practical-introduction-to-progressive-web-apps
 
 yarn global add @vue/cli    // latest cli
 
