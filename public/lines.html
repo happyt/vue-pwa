@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="1000" height="800"></canvas>
+<script>
+    var posX = 10;
+    var posY = 10;
+    // this point in list, get next
+    var GetNextPoint = function(n) {
+//        alert("pt: " + n);
+        var options = PointsFromThisPoint(n);
+        if (options.length <= 1) {
+            // at edge, so finished this line
+            DrawLineToScale(posY,posX,10, myList);
+            DrawLineToScale(posY,posX,10, theSquare);
+            posX += 50;
+            if (posX > 800) {
+                posY += 50;
+                posX = 10;
+            }
+//            alert("list: " + posX + "," + posY + ", " + myList);
+        } else {
+            // go to next level
+            for (var p=0; p<options.length; p++) {
+                // check if this point is already in the list
+                if (!PointAlreadyInList(options[p])){
+                    // not in list, so add new point
+                    myList.push(options[p]);
+                    GetNextPoint(options[p]);   // then get next from here, calls itself recursively
+                }
+            }
+        }
+        // has got the end of the alternatives from this point, so throw it away
+        myList.pop();
+        // and then will return to the previous point, because of recursion
+    }
+
+    var PointAlreadyInList = function(n) {
+        if (myList.length == 0) return false;
+        for (var e=0; e<myList.length; e++) {
+            if (n == myList[e]) return true;
+        }
+        return false;
+    };
+
+    // return valid next points from this point
+    var PointsFromThisPoint = function(n){
+        var theOptions = [];
+        var max = 5;
+        if (n % max == 0) {
+            // left edge
+            theOptions.push(n+1);
+        } else if (n % max == max - 1) {
+            // right edge
+            theOptions.push(n-1);
+        } else if (n < max ) {
+            // top row
+            theOptions.push(n+max);
+        } else if (n > (max*(max-1)-1)) {
+            // bottom row
+            theOptions.push(n-max);
+        } else {
+            theOptions.push(n-1);
+            theOptions.push(n+max);
+            theOptions.push(n+1);
+            theOptions.push(n-max);
+
+        }
+        return theOptions;
+    };
+
+    // draw the line relative to the top left point, scaled
+    var DrawLineToScale = function (top, left, scale, points) {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        var len = points.length;
+        var sx = 0;
+        var sy = 0;
+        for(var i = 0; i < len; i++) {
+            sx = left + thePoints[points[i]].x*scale;
+            sy = top + thePoints[points[i]].y*scale;
+
+            if (i==0) {
+                context.moveTo(sx, sy);
+            } else {
+                context.lineTo(sx, sy);
+            }
+        }
+        context.stroke();
+    };
+
+</script>
+<script>
+    var max = 5;                       // points in a row
+    var thePoints = [];
+    for (var i=0; i<max; i++) {         // calculate the x and y position of each point,
+        for (var j=0; j<max; j++){      // each 1 unit apart, we can scale it when we draw
+            thePoints.push({x:j, y:i});
+        }
+    }
+    var theSquare = [0, 4, 24, 20, 0];   // points making the square around outside
+    var startFromPoints = [1,2];        // only started from these points from top row 0-1-2-3-4
+    var myList = [];                    // current line
+    var directions = [];                // which way the line can go from the current point
+
+    for (var s=0; s<startFromPoints.length; s++) {
+       // alert(p);
+        myList = [];                            // empty line to start with
+        myList.push(startFromPoints[s]);        // first (edge) point, should only have one way to go
+        var options = PointsFromThisPoint(startFromPoints[s]);
+        if (options.length > 1) alert(options.length + "initial options!");
+        myList.push(options[0]);                // first line into square
+        GetNextPoint(options[0]);               // get next point from here
+
+                    // continues the same way your brain would
+    };
+
+</script>
+</body>
+</html>
